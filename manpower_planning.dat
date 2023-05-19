@@ -1,0 +1,74 @@
+data;
+
+set YEARS := 1 2 3;
+set SKILLS := unskilled semi_skilled skilled;
+# {s1:unskilled, s2:semi_skilled, s3:skilled} 
+
+param curr_workforce :=
+    unskilled       2000
+    semi_skilled    1500
+    skilled         1000;
+
+param demand :=
+    1 unskilled 1000
+    1 semi_skilled 1400
+    1 skilled 1000
+    2 unskilled 500
+    2 semi_skilled 2000
+    2 skilled 1500
+    3 unskilled 0
+    3 semi_skilled 2500
+    3 skilled 2000;
+
+param rookie_attrition :=
+    unskilled       0.25
+    semi_skilled    0.20
+    skilled         0.10;
+
+param veteran_attrition :=
+    unskilled       0.10
+    semi_skilled    0.05
+    skilled         0.05;
+
+param demoted_attrition := 0.50;
+
+param max_hiring :=
+    1 unskilled 500
+    1 semi_skilled 800
+    1 skilled 500
+    2 unskilled 500
+    2 semi_skilled 800
+    2 skilled 500
+    3 unskilled 500
+    3 semi_skilled 800
+    3 skilled 500;
+
+param max_overmanning := 150;
+param max_parttime := 50;
+param parttime_cap := 0.50;
+param max_train_unskilled := 200;
+param max_train_semiskilled := 0.25;
+
+
+param training_cost :=
+    unskilled       400
+    semi_skilled    500;
+
+param layoff_cost :=
+    unskilled       200
+    semi_skilled    500
+    skilled         500;
+
+param parttime_cost :=
+    unskilled       500
+    semi_skilled    400
+    skilled         400;
+
+param overmanning_cost :=
+    unskilled       1500
+    semi_skilled    2000
+    skilled         3000;
+
+
+
+    

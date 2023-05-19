@@ -1,0 +1,35 @@
+data;
+
+set MONTHS := Jan Feb Mar Apr May Jun ;
+set OIL_TYPE := VEG NONVEG ;
+set OILS[VEG] := VEG1 VEG2;
+set OILS[NONVEG] := OIL1 OIL2 OIL3;
+
+param revenue := 150; 
+param init_store := 500;
+param target_store := 500;
+param holding_cost := 5;
+param hardness_lb := 3;
+param hardness_ub := 6;
+param min_consume := 20;
+param max_ingredients := 3;
+
+param production_capacity :=
+    VEG    200
+    NONVEG 250 ;
+
+param hardness :=
+    VEG1    8.8
+    VEG2    6.1
+    OIL1    2
+    OIL2    4.2
+    OIL3    5 ;
+
+param cost:
+        VEG1  VEG2  OIL1  OIL2  OIL3 :=
+Jan     110   120   130   110   115
+Feb     130   130   110   90    115
+Mar     110   140   130   100   95
+Apr     120   110   120   120   125
+May     100   120   150   110   105
+Jun     90    100   140   80    135 ;

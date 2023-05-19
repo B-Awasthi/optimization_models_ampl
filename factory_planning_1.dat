@@ -1,0 +1,70 @@
+data;
+
+set MONTHS := Jan Feb Mar Apr May Jun ;
+set PRODUCTS := Prod1 Prod2 Prod3 Prod4 Prod5 Prod6 Prod7 ;
+set MACHINES := Grinder VertDrill horiDrill Borer Planer ;
+
+param profits :=
+    Prod1   10
+    Prod2   6 
+    Prod3   8 
+    Prod4   4 
+    Prod5   11
+    Prod6   9
+    Prod7   3 ;
+
+
+param: LINKS_MACH_PROD: time_req :=
+	Grinder Prod1 0.5
+	Grinder Prod2 0.7
+	Grinder Prod5 0.3
+	Grinder Prod6 0.2
+	Grinder Prod7 0.5
+	VertDrill Prod1 0.1
+	VertDrill Prod2 0.2
+	VertDrill Prod4 0.3
+	VertDrill Prod6 0.6
+	horiDrill Prod1 0.2
+	horiDrill Prod3 0.8
+	horiDrill Prod7 0.6
+	Borer Prod1 0.05
+	Borer Prod2 0.03
+	Borer Prod4 0.07
+	Borer Prod5 0.1
+	Borer Prod7 0.08
+	Planer Prod3 0.01
+	Planer Prod5 0.05
+	Planer Prod7 0.05 ;
+
+
+param down:
+                Grinder VertDrill horiDrill Borer Planer :=
+    Jan         1       0         0         0     0
+    Feb         0       0         2         0     0         
+    Mar         0       0         0         1     0
+    Apr         0       1         0         0     0
+    May         1       1         0         0     0
+    Jun         0       0         1         0     1 ;
+
+param installed :=
+    Grinder     4
+    VertDrill   2
+    horiDrill   3
+    Borer       1
+    Planer      1 ;
+
+
+param max_sales:
+                Prod1 Prod2 Prod3 Prod4 Prod5 Prod6 Prod7 :=
+    Jan         500   1000  300   300   800   200   100
+    Feb         600   500   200   0     400   300   150
+    Mar         300   600   0     0     500   400   100
+    Apr         200   300   400   500   200   0     100
+    May         0     100   500   100   1000  300   0
+    Jun         500   500   100   300   1100  500   60 ;
+
+
+param holding_cost := 0.5 ;
+param max_inventory := 100 ;
+param store_target := 50 ;
+param hours_per_month := 384 ;

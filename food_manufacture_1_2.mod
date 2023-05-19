@@ -1,0 +1,59 @@
+set MONTHS ordered;
+set OIL_TYPE;
+set OILS {OIL_TYPE};
+
+set ALL_OILS = union {i in OIL_TYPE} OILS[i];
+
+param prices {ALL_OILS} > 0;
+param hardness {ALL_OILS} > 0;
+param production_capacity {OIL_TYPE};
+param cost {MONTHS, ALL_OILS};
+param revenue > 0;
+param hardness_lb > 0;
+param hardness_ub > 0;
+param init_store > 0;
+param target_store > 0;
+param holding_cost > 0;
+
+
+# DECISION  VARIBLES #
+var produce {MONTHS} >= 0;
+var buy {MONTHS, ALL_OILS} >= 0;
+var consume {MONTHS, ALL_OILS} >= 0;
+var store {MONTHS, ALL_OILS} >= 0;
+
+# CONSTRAINTS #
+
+# 1.
+subject to initial_balance_constraint {ol in ALL_OILS}:
+    init_store + buy[first(MONTHS), ol] = consume[first(MONTHS), ol] + store[first(MONTHS), ol];
+
+# 2.
+subject to balance_constraint {ol in ALL_OILS, mth in MONTHS : ord(mth) > 1}:
+    store[prev(mth), ol] + buy[mth, ol] = consume[mth, ol] + store[mth, ol];
+
+# 3.
+subject to inventory_target_constraint {ol in ALL_OILS}:
+    store[last(MONTHS), ol] = target_store;
+
+# 4.
+subject to vegetable_oil_capacity_constraint {mth in MONTHS, oltyp in OIL_TYPE}:
+    sum {ol in OILS[oltyp]} consume[mth, ol] <= production_capacity[oltyp];
+
+# 5.1
+subject to hardness_min_constraint {mth in MONTHS}:
+    sum {ol in ALL_OILS} hardness[ol] * consume[mth, ol] >= hardness_lb * produce[mth];
+
+# 5.2
+subject to hardness_max_constraint {mth in MONTHS}:
+    sum {ol in ALL_OILS} hardness[ol] * consume[mth, ol] <= hardness_ub * produce[mth];
+
+# 6.
+subject to mass_conservation_constraint {mth in MONTHS}:
+    sum {ol in ALL_OILS} consume[mth, ol] = produce[mth];
+
+# OBJECTIVE FUNCTION
+maximize total_profits: 
+    revenue * sum {mth in MONTHS} produce[mth] 
+    - sum {mth in MONTHS, ol in ALL_OILS} cost[mth, ol] * buy[mth, ol]
+    - holding_cost * sum {mth in MONTHS, ol in ALL_OILS} store[mth, ol];

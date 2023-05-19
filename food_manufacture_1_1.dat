@@ -1,0 +1,28 @@
+data;
+
+set OIL_TYPE := VEG NONVEG ;
+set OILS[VEG] := VEG1 VEG2;
+set OILS[NONVEG] := OIL1,OIL2,OIL3;
+
+param revenue := 150;
+
+param production_capacity :=
+    VEG    200
+    NONVEG 250 ;
+
+param:  prices :=
+    VEG1    110
+    VEG2    120
+    OIL1    130
+    OIL2    110
+    OIL3    115 ;
+
+param:  hardness :=
+    VEG1    8.8
+    VEG2    6.1
+    OIL1    2
+    OIL2    4.2
+    OIL3    5 ;
+
+param hardness_lb := 3;
+param hardness_ub := 6;
