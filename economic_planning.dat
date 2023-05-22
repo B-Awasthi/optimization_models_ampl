@@ -1,0 +1,51 @@
+data;
+
+set IND := coal steel transport;
+set HORIZON := 1 2 3 4 5 6;
+set FIVE_YEARS := 1 2 3 4 5;
+
+param: ARCS: inout_prod := 
+    coal coal 0.1
+    coal steel 0.5
+    coal transport 0.4
+    steel coal 0.1
+    steel steel 0.1
+    steel transport 0.2
+    transport coal 0.2
+    transport steel 0.1
+    transport transport 0.2 ;
+
+param labor_prod :=
+    coal        0.6
+    steel       0.3
+    transport   0.2 ;
+
+param inout_cap :=
+    coal coal 0.1
+    coal steel 0.7
+    coal transport 0.9
+    steel coal 0.1
+    steel steel 0.1
+    steel transport 0.2
+    transport coal 0.2
+    transport steel 0.1
+    transport transport 0.2 ;
+
+param labor_extra_cap :=
+    coal        0.4
+    steel       0.2
+    transport   0.1 ;
+
+param:          stock0 capacity0 demand :=
+    coal        250     300      60  
+    steel       180     350      60  
+    transport   200     280      30 ;
+
+
+param  static_prod :=
+    coal        166.39676113360323
+    steel       105.66801619433198
+    transport   92.30769230769229 ;
+
+
+
