@@ -1,0 +1,51 @@
+data;
+
+set TYPES := 1 2 3;
+set PERIODS := 1 2 3 4 5;
+
+param maxstart0 := 5;
+
+param generators := 
+1   12 
+2   10 
+3   5;
+
+param period_hours := 
+1   6
+2   3 
+3   6 
+4   3 
+5   6;
+
+param demand := 
+1   15000 
+2   30000 
+3   25000 
+4   40000 
+5   27000;
+
+param min_load := 
+1   850 
+2   1250 
+3   1500;
+
+param max_load := 
+1   2000 
+2   1750 
+3   4000;
+
+param base_cost := 
+1   1000 
+2   2600 
+3   3000;
+
+param per_mw_cost := 
+1   2 
+2   1.3 
+3   3;
+
+param startup_cost := 
+1   2000 
+2   1000 
+3   500;
+
