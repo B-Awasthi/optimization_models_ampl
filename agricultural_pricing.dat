@@ -1,0 +1,30 @@
+data;
+
+set DAIRY := milk butter cheese1 cheese2 ;
+set COMPONENTS := fat dryMatter ;
+
+
+param: COMP_DAIRY: qtyper :=
+    fat milk  0.04 
+    fat butter  0.8 
+    fat cheese1  0.35 
+    fat cheese2  0.25 
+    dryMatter milk  0.09 
+    dryMatter butter  0.02 
+    dryMatter cheese1  0.3 
+    dryMatter cheese2  0.4 ;
+
+param capacity :=
+    fat         600
+    dryMatter  750 ;
+
+param: consumption price elasticity :=
+    milk     4.82  0.297  0.4  
+    butter   0.32  0.72   2.7  
+    cheese1  0.21  1.05   1.1  
+    cheese2  0.07  0.815  0.4 ;
+
+param elasticity12 := 0.1 ;
+param elasticity21 := 0.4 ;
+param priceIndex := 1.939 ;
+
