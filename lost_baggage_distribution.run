@@ -1,0 +1,17 @@
+model lost_luggage_distribution.mod;
+data lost_luggage_distribution.dat;
+
+option solver highs;
+option show_stats 1; 
+
+objective number_of_vans_used;
+solve;
+
+param min_vans_used > 0 ;
+let min_vans_used := number_of_vans_used.val ;
+
+subject to number_of_vans_used_constraint:
+    sum {k in VANS} z[k] <= min_vans_used;
+
+objective max_time_limit;
+solve;
