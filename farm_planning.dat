@@ -1,0 +1,53 @@
+data ;
+
+set YEARS := 1 2 3 4 5 ;
+set LANDS := 1 2 3 4 ;
+set AGES := 1 2 3 4 5 6 7 8 9 10 11 12 ;
+set COW_AGES := 2 3 4 5 6 7 8 9 10 11 ;
+
+param gr_area :=
+    1   20
+    2   30
+    3   20
+    4   10 ;
+
+param gr_yield :=
+    1   1.1
+    2   0.9
+    3   0.8
+    4   0.65 ;
+
+param sb_yield := 1.5 ;
+param housing_cap := 130 ;
+param gr_intake := 0.6 ;
+param sb_intake := 0.7 ;
+param hf_land := 0.67 ;
+param land_cap := 200 ;
+param hf_labor := 0.10 ;
+param cow_labor := 0.42 ;
+param gr_labor := 0.04 ;
+param sb_labor := 0.14 ;
+param labor_cap := 55 ;
+param cow_decay := 0.02 ;
+param hf_decay := 0.05 ;
+param initial_hf := 9.5 ;
+param initial_cows := 9.8 ;
+param birthrate := 1.1 ;
+param min_final_cows := 50 ;
+param max_final_cows := 175 ;
+param bl_price := 30 ;
+param hf_price := 40 ;
+param cow_price := 120 ;
+param milk_price := 370 ;
+param gr_price := 75 ;
+param sb_price := 58 ;
+param gr_cost := 90 ;
+param sb_cost := 70 ;
+param overtime_cost := 120 ;
+param regular_time_cost := 4000 ;
+param hf_cost := 50 ;
+param cow_cost := 100 ;
+param gr_land_cost := 15 ;
+param sb_land_cost := 10 ;
+param installment := 39.71 ;
+
