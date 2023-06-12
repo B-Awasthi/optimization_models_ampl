@@ -1,0 +1,513 @@
+data;
+
+set CLASSES := First Business Economy ;
+
+set OPTIONS := option1 option2 option3 ;
+
+set SCENARIOS := sce1 sce2 sce3 ;
+
+param: CLASS_OPT: price1 price2 price3 :=
+    First option1 1200 1400 1500
+    Business option1 900 1100 820
+    Economy option1 500 700 480
+    First option2 1000 1300 900
+    Business option2 800 900 800
+    Economy option2 300 400 470
+    First option3 950 1150 850
+    Business option3 600 750 500
+    Economy option3 200 350 450 ;
+
+param: SCENARIOS: prob :=
+    sce1 0.1 
+    sce2 0.7 
+    sce3 0.2 ;
+
+param: SCEN_CLASS_OPT: fcst1 fcst2 fcst3 := 
+    sce1 First option1  10 20 30 
+    sce1 Business option1  20 42 40 
+    sce1 Economy option1  45 50 50 
+    sce1 First option2  15 25 35 
+    sce1 Business option2  25 45 50 
+    sce1 Economy option2  55 52 60 
+    sce1 First option3  20 35 40 
+    sce1 Business option3  35 46 55 
+    sce1 Economy option3  60 60 80 
+    sce2 First option1  20 10 30 
+    sce2 Business option1  40 50 10 
+    sce2 Economy option1  50 60 50 
+    sce2 First option2  25 40 40 
+    sce2 Business option2  42 60 40 
+    sce2 Economy option2  52 65 60 
+    sce2 First option3  35 50 60 
+    sce2 Business option3  45 80 45 
+    sce2 Economy option3  63 90 70 
+    sce3 First option1  45 50 50 
+    sce3 Business option1  45 20 40 
+    sce3 Economy option1  55 10 60 
+    sce3 First option2  50 55 70 
+    sce3 Business option2  46 30 45 
+    sce3 Economy option2  56 40 65 
+    sce3 First option3  60 80 80 
+    sce3 Business option3  47 50 60 
+    sce3 Economy option3  64 60 70 ;
+
+param: demand1 demand2 demand3 :=
+    First    option1 25  22  45 
+    Business    option1 50  45  20 
+    Economy    option1 50  50  55 
+    First    option2 30  45  60 
+    Business    option2 40  55  40 
+    Economy    option2 53  60  60 
+    First    option3 40  50  75 
+    Business    option3 45  75  50 
+    Economy    option3 65  80  75 ;
+
+param cap :=
+    First 37
+    Business 38
+    Economy 47 ;
+
+param cost := 50000 ;
+
+set IJCH := 
+    sce1 sce1 First option1 
+    sce1 sce1 First option2 
+    sce1 sce1 First option3 
+    sce1 sce1 Business option1 
+    sce1 sce1 Business option2 
+    sce1 sce1 Business option3 
+    sce1 sce1 Economy option1 
+    sce1 sce1 Economy option2 
+    sce1 sce1 Economy option3 
+    sce1 sce2 First option1 
+    sce1 sce2 First option2 
+    sce1 sce2 First option3 
+    sce1 sce2 Business option1 
+    sce1 sce2 Business option2 
+    sce1 sce2 Business option3 
+    sce1 sce2 Economy option1 
+    sce1 sce2 Economy option2 
+    sce1 sce2 Economy option3 
+    sce1 sce3 First option1 
+    sce1 sce3 First option2 
+    sce1 sce3 First option3 
+    sce1 sce3 Business option1 
+    sce1 sce3 Business option2 
+    sce1 sce3 Business option3 
+    sce1 sce3 Economy option1 
+    sce1 sce3 Economy option2 
+    sce1 sce3 Economy option3 
+    sce2 sce1 First option1 
+    sce2 sce1 First option2 
+    sce2 sce1 First option3 
+    sce2 sce1 Business option1 
+    sce2 sce1 Business option2 
+    sce2 sce1 Business option3 
+    sce2 sce1 Economy option1 
+    sce2 sce1 Economy option2 
+    sce2 sce1 Economy option3 
+    sce2 sce2 First option1 
+    sce2 sce2 First option2 
+    sce2 sce2 First option3 
+    sce2 sce2 Business option1 
+    sce2 sce2 Business option2 
+    sce2 sce2 Business option3 
+    sce2 sce2 Economy option1 
+    sce2 sce2 Economy option2 
+    sce2 sce2 Economy option3 
+    sce2 sce3 First option1 
+    sce2 sce3 First option2 
+    sce2 sce3 First option3 
+    sce2 sce3 Business option1 
+    sce2 sce3 Business option2 
+    sce2 sce3 Business option3 
+    sce2 sce3 Economy option1 
+    sce2 sce3 Economy option2 
+    sce2 sce3 Economy option3 
+    sce3 sce1 First option1 
+    sce3 sce1 First option2 
+    sce3 sce1 First option3 
+    sce3 sce1 Business option1 
+    sce3 sce1 Business option2 
+    sce3 sce1 Business option3 
+    sce3 sce1 Economy option1 
+    sce3 sce1 Economy option2 
+    sce3 sce1 Economy option3 
+    sce3 sce2 First option1 
+    sce3 sce2 First option2 
+    sce3 sce2 First option3 
+    sce3 sce2 Business option1 
+    sce3 sce2 Business option2 
+    sce3 sce2 Business option3 
+    sce3 sce2 Economy option1 
+    sce3 sce2 Economy option2 
+    sce3 sce2 Economy option3 
+    sce3 sce3 First option1 
+    sce3 sce3 First option2 
+    sce3 sce3 First option3 
+    sce3 sce3 Business option1 
+    sce3 sce3 Business option2 
+    sce3 sce3 Business option3 
+    sce3 sce3 Economy option1 
+    sce3 sce3 Economy option2 
+    sce3 sce3 Economy option3 ;
+
+
+set IJKCH := 
+sce1 sce1 sce1 First option1 
+sce1 sce1 sce1 First option2 
+sce1 sce1 sce1 First option3 
+sce1 sce1 sce1 Business option1 
+sce1 sce1 sce1 Business option2 
+sce1 sce1 sce1 Business option3 
+sce1 sce1 sce1 Economy option1 
+sce1 sce1 sce1 Economy option2 
+sce1 sce1 sce1 Economy option3 
+sce1 sce1 sce2 First option1 
+sce1 sce1 sce2 First option2 
+sce1 sce1 sce2 First option3 
+sce1 sce1 sce2 Business option1 
+sce1 sce1 sce2 Business option2 
+sce1 sce1 sce2 Business option3 
+sce1 sce1 sce2 Economy option1 
+sce1 sce1 sce2 Economy option2 
+sce1 sce1 sce2 Economy option3 
+sce1 sce1 sce3 First option1 
+sce1 sce1 sce3 First option2 
+sce1 sce1 sce3 First option3 
+sce1 sce1 sce3 Business option1 
+sce1 sce1 sce3 Business option2 
+sce1 sce1 sce3 Business option3 
+sce1 sce1 sce3 Economy option1 
+sce1 sce1 sce3 Economy option2 
+sce1 sce1 sce3 Economy option3 
+sce1 sce2 sce1 First option1 
+sce1 sce2 sce1 First option2 
+sce1 sce2 sce1 First option3 
+sce1 sce2 sce1 Business option1 
+sce1 sce2 sce1 Business option2 
+sce1 sce2 sce1 Business option3 
+sce1 sce2 sce1 Economy option1 
+sce1 sce2 sce1 Economy option2 
+sce1 sce2 sce1 Economy option3 
+sce1 sce2 sce2 First option1 
+sce1 sce2 sce2 First option2 
+sce1 sce2 sce2 First option3 
+sce1 sce2 sce2 Business option1 
+sce1 sce2 sce2 Business option2 
+sce1 sce2 sce2 Business option3 
+sce1 sce2 sce2 Economy option1 
+sce1 sce2 sce2 Economy option2 
+sce1 sce2 sce2 Economy option3 
+sce1 sce2 sce3 First option1 
+sce1 sce2 sce3 First option2 
+sce1 sce2 sce3 First option3 
+sce1 sce2 sce3 Business option1 
+sce1 sce2 sce3 Business option2 
+sce1 sce2 sce3 Business option3 
+sce1 sce2 sce3 Economy option1 
+sce1 sce2 sce3 Economy option2 
+sce1 sce2 sce3 Economy option3 
+sce1 sce3 sce1 First option1 
+sce1 sce3 sce1 First option2 
+sce1 sce3 sce1 First option3 
+sce1 sce3 sce1 Business option1 
+sce1 sce3 sce1 Business option2 
+sce1 sce3 sce1 Business option3 
+sce1 sce3 sce1 Economy option1 
+sce1 sce3 sce1 Economy option2 
+sce1 sce3 sce1 Economy option3 
+sce1 sce3 sce2 First option1 
+sce1 sce3 sce2 First option2 
+sce1 sce3 sce2 First option3 
+sce1 sce3 sce2 Business option1 
+sce1 sce3 sce2 Business option2 
+sce1 sce3 sce2 Business option3 
+sce1 sce3 sce2 Economy option1 
+sce1 sce3 sce2 Economy option2 
+sce1 sce3 sce2 Economy option3 
+sce1 sce3 sce3 First option1 
+sce1 sce3 sce3 First option2 
+sce1 sce3 sce3 First option3 
+sce1 sce3 sce3 Business option1 
+sce1 sce3 sce3 Business option2 
+sce1 sce3 sce3 Business option3 
+sce1 sce3 sce3 Economy option1 
+sce1 sce3 sce3 Economy option2 
+sce1 sce3 sce3 Economy option3 
+sce2 sce1 sce1 First option1 
+sce2 sce1 sce1 First option2 
+sce2 sce1 sce1 First option3 
+sce2 sce1 sce1 Business option1 
+sce2 sce1 sce1 Business option2 
+sce2 sce1 sce1 Business option3 
+sce2 sce1 sce1 Economy option1 
+sce2 sce1 sce1 Economy option2 
+sce2 sce1 sce1 Economy option3 
+sce2 sce1 sce2 First option1 
+sce2 sce1 sce2 First option2 
+sce2 sce1 sce2 First option3 
+sce2 sce1 sce2 Business option1 
+sce2 sce1 sce2 Business option2 
+sce2 sce1 sce2 Business option3 
+sce2 sce1 sce2 Economy option1 
+sce2 sce1 sce2 Economy option2 
+sce2 sce1 sce2 Economy option3 
+sce2 sce1 sce3 First option1 
+sce2 sce1 sce3 First option2 
+sce2 sce1 sce3 First option3 
+sce2 sce1 sce3 Business option1 
+sce2 sce1 sce3 Business option2 
+sce2 sce1 sce3 Business option3 
+sce2 sce1 sce3 Economy option1 
+sce2 sce1 sce3 Economy option2 
+sce2 sce1 sce3 Economy option3 
+sce2 sce2 sce1 First option1 
+sce2 sce2 sce1 First option2 
+sce2 sce2 sce1 First option3 
+sce2 sce2 sce1 Business option1 
+sce2 sce2 sce1 Business option2 
+sce2 sce2 sce1 Business option3 
+sce2 sce2 sce1 Economy option1 
+sce2 sce2 sce1 Economy option2 
+sce2 sce2 sce1 Economy option3 
+sce2 sce2 sce2 First option1 
+sce2 sce2 sce2 First option2 
+sce2 sce2 sce2 First option3 
+sce2 sce2 sce2 Business option1 
+sce2 sce2 sce2 Business option2 
+sce2 sce2 sce2 Business option3 
+sce2 sce2 sce2 Economy option1 
+sce2 sce2 sce2 Economy option2 
+sce2 sce2 sce2 Economy option3 
+sce2 sce2 sce3 First option1 
+sce2 sce2 sce3 First option2 
+sce2 sce2 sce3 First option3 
+sce2 sce2 sce3 Business option1 
+sce2 sce2 sce3 Business option2 
+sce2 sce2 sce3 Business option3 
+sce2 sce2 sce3 Economy option1 
+sce2 sce2 sce3 Economy option2 
+sce2 sce2 sce3 Economy option3 
+sce2 sce3 sce1 First option1 
+sce2 sce3 sce1 First option2 
+sce2 sce3 sce1 First option3 
+sce2 sce3 sce1 Business option1 
+sce2 sce3 sce1 Business option2 
+sce2 sce3 sce1 Business option3 
+sce2 sce3 sce1 Economy option1 
+sce2 sce3 sce1 Economy option2 
+sce2 sce3 sce1 Economy option3 
+sce2 sce3 sce2 First option1 
+sce2 sce3 sce2 First option2 
+sce2 sce3 sce2 First option3 
+sce2 sce3 sce2 Business option1 
+sce2 sce3 sce2 Business option2 
+sce2 sce3 sce2 Business option3 
+sce2 sce3 sce2 Economy option1 
+sce2 sce3 sce2 Economy option2 
+sce2 sce3 sce2 Economy option3 
+sce2 sce3 sce3 First option1 
+sce2 sce3 sce3 First option2 
+sce2 sce3 sce3 First option3 
+sce2 sce3 sce3 Business option1 
+sce2 sce3 sce3 Business option2 
+sce2 sce3 sce3 Business option3 
+sce2 sce3 sce3 Economy option1 
+sce2 sce3 sce3 Economy option2 
+sce2 sce3 sce3 Economy option3 
+sce3 sce1 sce1 First option1 
+sce3 sce1 sce1 First option2 
+sce3 sce1 sce1 First option3 
+sce3 sce1 sce1 Business option1 
+sce3 sce1 sce1 Business option2 
+sce3 sce1 sce1 Business option3 
+sce3 sce1 sce1 Economy option1 
+sce3 sce1 sce1 Economy option2 
+sce3 sce1 sce1 Economy option3 
+sce3 sce1 sce2 First option1 
+sce3 sce1 sce2 First option2 
+sce3 sce1 sce2 First option3 
+sce3 sce1 sce2 Business option1 
+sce3 sce1 sce2 Business option2 
+sce3 sce1 sce2 Business option3 
+sce3 sce1 sce2 Economy option1 
+sce3 sce1 sce2 Economy option2 
+sce3 sce1 sce2 Economy option3 
+sce3 sce1 sce3 First option1 
+sce3 sce1 sce3 First option2 
+sce3 sce1 sce3 First option3 
+sce3 sce1 sce3 Business option1 
+sce3 sce1 sce3 Business option2 
+sce3 sce1 sce3 Business option3 
+sce3 sce1 sce3 Economy option1 
+sce3 sce1 sce3 Economy option2 
+sce3 sce1 sce3 Economy option3 
+sce3 sce2 sce1 First option1 
+sce3 sce2 sce1 First option2 
+sce3 sce2 sce1 First option3 
+sce3 sce2 sce1 Business option1 
+sce3 sce2 sce1 Business option2 
+sce3 sce2 sce1 Business option3 
+sce3 sce2 sce1 Economy option1 
+sce3 sce2 sce1 Economy option2 
+sce3 sce2 sce1 Economy option3 
+sce3 sce2 sce2 First option1 
+sce3 sce2 sce2 First option2 
+sce3 sce2 sce2 First option3 
+sce3 sce2 sce2 Business option1 
+sce3 sce2 sce2 Business option2 
+sce3 sce2 sce2 Business option3 
+sce3 sce2 sce2 Economy option1 
+sce3 sce2 sce2 Economy option2 
+sce3 sce2 sce2 Economy option3 
+sce3 sce2 sce3 First option1 
+sce3 sce2 sce3 First option2 
+sce3 sce2 sce3 First option3 
+sce3 sce2 sce3 Business option1 
+sce3 sce2 sce3 Business option2 
+sce3 sce2 sce3 Business option3 
+sce3 sce2 sce3 Economy option1 
+sce3 sce2 sce3 Economy option2 
+sce3 sce2 sce3 Economy option3 
+sce3 sce3 sce1 First option1 
+sce3 sce3 sce1 First option2 
+sce3 sce3 sce1 First option3 
+sce3 sce3 sce1 Business option1 
+sce3 sce3 sce1 Business option2 
+sce3 sce3 sce1 Business option3 
+sce3 sce3 sce1 Economy option1 
+sce3 sce3 sce1 Economy option2 
+sce3 sce3 sce1 Economy option3 
+sce3 sce3 sce2 First option1 
+sce3 sce3 sce2 First option2 
+sce3 sce3 sce2 First option3 
+sce3 sce3 sce2 Business option1 
+sce3 sce3 sce2 Business option2 
+sce3 sce3 sce2 Business option3 
+sce3 sce3 sce2 Economy option1 
+sce3 sce3 sce2 Economy option2 
+sce3 sce3 sce2 Economy option3 
+sce3 sce3 sce3 First option1 
+sce3 sce3 sce3 First option2 
+sce3 sce3 sce3 First option3 
+sce3 sce3 sce3 Business option1 
+sce3 sce3 sce3 Business option2 
+sce3 sce3 sce3 Business option3 
+sce3 sce3 sce3 Economy option1 
+sce3 sce3 sce3 Economy option2 
+sce3 sce3 sce3 Economy option3 ;
+
+
+set IJK := 
+    sce1 sce1 sce1 
+    sce1 sce1 sce2 
+    sce1 sce1 sce3 
+    sce1 sce2 sce1 
+    sce1 sce2 sce2 
+    sce1 sce2 sce3 
+    sce1 sce3 sce1 
+    sce1 sce3 sce2 
+    sce1 sce3 sce3 
+    sce2 sce1 sce1 
+    sce2 sce1 sce2 
+    sce2 sce1 sce3 
+    sce2 sce2 sce1 
+    sce2 sce2 sce2 
+    sce2 sce2 sce3 
+    sce2 sce3 sce1 
+    sce2 sce3 sce2 
+    sce2 sce3 sce3 
+    sce3 sce1 sce1 
+    sce3 sce1 sce2 
+    sce3 sce1 sce3 
+    sce3 sce2 sce1 
+    sce3 sce2 sce2 
+    sce3 sce2 sce3 
+    sce3 sce3 sce1 
+    sce3 sce3 sce2 
+    sce3 sce3 sce3 ;
+
+
+set IJKC := 
+    sce1 sce1 sce1 First 
+    sce1 sce1 sce1 Business 
+    sce1 sce1 sce1 Economy 
+    sce1 sce1 sce2 First 
+    sce1 sce1 sce2 Business 
+    sce1 sce1 sce2 Economy 
+    sce1 sce1 sce3 First 
+    sce1 sce1 sce3 Business 
+    sce1 sce1 sce3 Economy 
+    sce1 sce2 sce1 First 
+    sce1 sce2 sce1 Business 
+    sce1 sce2 sce1 Economy 
+    sce1 sce2 sce2 First 
+    sce1 sce2 sce2 Business 
+    sce1 sce2 sce2 Economy 
+    sce1 sce2 sce3 First 
+    sce1 sce2 sce3 Business 
+    sce1 sce2 sce3 Economy 
+    sce1 sce3 sce1 First 
+    sce1 sce3 sce1 Business 
+    sce1 sce3 sce1 Economy 
+    sce1 sce3 sce2 First 
+    sce1 sce3 sce2 Business 
+    sce1 sce3 sce2 Economy 
+    sce1 sce3 sce3 First 
+    sce1 sce3 sce3 Business 
+    sce1 sce3 sce3 Economy 
+    sce2 sce1 sce1 First 
+    sce2 sce1 sce1 Business 
+    sce2 sce1 sce1 Economy 
+    sce2 sce1 sce2 First 
+    sce2 sce1 sce2 Business 
+    sce2 sce1 sce2 Economy 
+    sce2 sce1 sce3 First 
+    sce2 sce1 sce3 Business 
+    sce2 sce1 sce3 Economy 
+    sce2 sce2 sce1 First 
+    sce2 sce2 sce1 Business 
+    sce2 sce2 sce1 Economy 
+    sce2 sce2 sce2 First 
+    sce2 sce2 sce2 Business 
+    sce2 sce2 sce2 Economy 
+    sce2 sce2 sce3 First 
+    sce2 sce2 sce3 Business 
+    sce2 sce2 sce3 Economy 
+    sce2 sce3 sce1 First 
+    sce2 sce3 sce1 Business 
+    sce2 sce3 sce1 Economy 
+    sce2 sce3 sce2 First 
+    sce2 sce3 sce2 Business 
+    sce2 sce3 sce2 Economy 
+    sce2 sce3 sce3 First 
+    sce2 sce3 sce3 Business 
+    sce2 sce3 sce3 Economy 
+    sce3 sce1 sce1 First 
+    sce3 sce1 sce1 Business 
+    sce3 sce1 sce1 Economy 
+    sce3 sce1 sce2 First 
+    sce3 sce1 sce2 Business 
+    sce3 sce1 sce2 Economy 
+    sce3 sce1 sce3 First 
+    sce3 sce1 sce3 Business 
+    sce3 sce1 sce3 Economy 
+    sce3 sce2 sce1 First 
+    sce3 sce2 sce1 Business 
+    sce3 sce2 sce1 Economy 
+    sce3 sce2 sce2 First 
+    sce3 sce2 sce2 Business 
+    sce3 sce2 sce2 Economy 
+    sce3 sce2 sce3 First 
+    sce3 sce2 sce3 Business 
+    sce3 sce2 sce3 Economy 
+    sce3 sce3 sce1 First 
+    sce3 sce3 sce1 Business 
+    sce3 sce3 sce1 Economy 
+    sce3 sce3 sce2 First 
+    sce3 sce3 sce2 Business 
+    sce3 sce3 sce2 Economy 
+    sce3 sce3 sce3 First 
+    sce3 sce3 sce3 Business 
+    sce3 sce3 sce3 Economy ;
