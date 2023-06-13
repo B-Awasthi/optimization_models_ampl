@@ -1,0 +1,75 @@
+data ;
+
+set CRUDE_NUMBERS := 1 2 ;
+set PETROLS := Premium_fuel Regular_fuel ;
+set END_PRODUCT_NAMES := Premium_fuel Regular_fuel Jet_fuel Fuel_oil Lube_oil ;
+set DISTILLATION_PRODUCTS_NAMES := Light_naphtha Medium_naphtha Heavy_naphtha Light_oil Heavy_oil Residuum ;
+set NAPHTHAS := Light_naphtha Medium_naphtha Heavy_naphtha ;
+set INTERMEDIATE_OILS := Light_oil Heavy_oil ;
+set CRACKING_PRODUCTS_NAMES := Cracked_gasoline Cracked_oil ;
+set USED_FOR_MOTOR_FUEL_NAMES := Light_naphtha Medium_naphtha Heavy_naphtha Reformed_gasoline Cracked_gasoline ;
+set USED_FOR_JET_FUEL_NAMES := Light_oil Heavy_oil Residuum Cracked_oil ;
+
+param: CRUDE_NUMBERS: buy_limit := 
+    1 20000
+    2 30000 ;
+
+param lbo_min := 500 ;
+param lbo_max := 1000 ;
+
+param distill_cap := 45000 ;
+param reform_cap := 10000 ;
+param crack_cap := 8000 ;
+
+param: DISTILLATION_PRODUCTS_NAMES: distillation_splitting_coefficients_1 distillation_splitting_coefficients_2 := 
+    Light_naphtha 0.1 0.15
+    Medium_naphtha 0.2 0.25
+    Heavy_naphtha 0.2 0.18
+    Light_oil 0.12 0.08
+    Heavy_oil 0.2 0.19
+    Residuum 0.13 0.12 ;
+
+param: INT_OILS_CRACK_PRD_NAMES: cracking_splitting_coefficients := 
+    Light_oil  Cracked_oil  0.68 
+    Heavy_oil  Cracked_oil  0.75 
+    Light_oil  Cracked_gasoline  0.28 
+    Heavy_oil  Cracked_gasoline  0.2 ;
+
+param: NAPHTHAS: reforming_splitting_coefficients := 
+    Light_naphtha 0.6 
+    Medium_naphtha 0.52  
+    Heavy_naphtha 0.45 ;  
+
+param: END_PRODUCT_NAMES: end_product_profit := 
+    Premium_fuel 7  
+    Regular_fuel 6  
+    Jet_fuel 4  
+    Fuel_oil 3.5  
+    Lube_oil 1.5 ;
+
+param: USED_FOR_JET_FUEL_NAMES: blending_coefficients := 
+    Light_oil 0.55  
+    Heavy_oil 0.17  
+    Cracked_oil 0.22  
+    Residuum 0.055 ;
+
+param lube_oil_factor := 0.5 ;
+param pmf_rmf_ratio := 0.4 ;
+
+param: USED_FOR_MOTOR_FUEL_NAMES: octance_number_coefficients := 
+     Light_naphtha 90 
+     Medium_naphtha 80 
+     Heavy_naphtha 70 
+     Reformed_gasoline 115 
+     Cracked_gasoline 105  ;
+
+param: PETROLS: octance_number_fuel := 
+    Premium_fuel 94 
+    Regular_fuel 84 ;
+
+param: vapor_pressure_constants := 
+    Heavy_oil 0.6
+    Cracked_oil 1.5
+    Residuum 0.05 ;
+
+
