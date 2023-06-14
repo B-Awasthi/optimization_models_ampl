@@ -16,7 +16,7 @@ Following models from the book, NOT IMPLEMENTED implies, that particular model i
 10. Decentralisation
 11. Curve fitting
 12. Logical design
-13. Market sharing -- NOT IMPLEMENTED
+13. Market sharing
 14. Opencast mining
 15. Tariff rates (power generation)
 16. Hydro power
@@ -25,7 +25,7 @@ Following models from the book, NOT IMPLEMENTED implies, that particular model i
 19. Distribution 1
 20. Depot location (distribution 2)
 21. Agricultural pricing
-22. Efficiency analysis -- NOT IMPLEMENTED
+22. Efficiency analysis
 23. Milk collection
 24. Yield management
 25. Car rental 1 -- NOT IMPLEMENTED
